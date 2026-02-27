@@ -11,8 +11,8 @@ let player = {
     height: 1.8,
     slideHeight: 0.8,
     currentHeight: 1.8,
-    speed: 8,
-    sprintSpeed: 11,
+    speed: 12,
+    sprintSpeed: 16,
     slideSpeed: 16,
     jumpForce: 12,
     wallJumpForce: 14,
@@ -40,7 +40,7 @@ let playerIsIt = true;
 let aiMesh = null;
 let aiPosition = new THREE.Vector3(20, 1.8, 20);
 let aiVelocity = new THREE.Vector3();
-let aiSpeed = 7;
+let aiSpeed = 10;
 let tagCooldown = 0;
 let aiTargetPos = new THREE.Vector3();
 let aiChangeTargetTime = 0;
@@ -1542,7 +1542,7 @@ function updateAI(delta) {
         } else {
             // Run towards parkour target
             aiTargetPos.copy(targetPos);
-            aiSpeed = 12;
+            aiSpeed = 14;
 
             // Do a slide approach
             if (distToTarget < 8 && distToTarget > 4 && aiOnGround && !aiIsSliding && Math.random() < 0.05) {
@@ -1570,7 +1570,7 @@ function updateAI(delta) {
         if (distToPlayer < 15) {
             const escapeDir = aiPosition.clone().sub(playerPos).normalize();
             aiTargetPos.copy(aiPosition).add(escapeDir.multiplyScalar(30));
-            aiSpeed = aiIsSliding ? 14 : 10;
+            aiSpeed = aiIsSliding ? 18 : 14;
 
             // Slide to escape when player is very close
             if (distToPlayer < 8 && aiOnGround && !aiIsSliding && Math.random() < 0.03) {
@@ -1584,7 +1584,7 @@ function updateAI(delta) {
                 aiJumpCooldown = 1.5;
             }
         } else {
-            aiSpeed = 7;
+            aiSpeed = 10;
 
             // Random parkour jumps when not being chased closely
             if (aiOnGround && aiJumpCooldown <= 0 && Math.random() < 0.015) {
@@ -1601,7 +1601,7 @@ function updateAI(delta) {
     } else {
         // AI chases player
         aiTargetPos.copy(playerPos);
-        aiSpeed = aiIsSliding ? 14 : (distToPlayer > 20 ? 9 : 7);
+        aiSpeed = aiIsSliding ? 18 : 14;
 
         // Slide attack when close
         if (distToPlayer < 10 && distToPlayer > 3 && aiOnGround && !aiIsSliding && Math.random() < 0.02) {
