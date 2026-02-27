@@ -262,3 +262,13 @@ canvas {
     color: #bbb;
     margin-bottom: 20px;
 }
+#version {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    z-index: 100;
+    pointer-events: none;
+}
